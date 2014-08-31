@@ -1,0 +1,8 @@
+extends master
+block content
+	h3 New Task
+	form(method="post")
+		label(for="txtTask") Task :
+		input#txtTask(type="text", name="newTask")
+		input#btnSubmit(type="submit", value="Save")
+		input#btnReset(type="reset", value="Reset")

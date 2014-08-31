@@ -1,0 +1,30 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.completed {
+	text-decoration: line-through;
+	font-style: italic;
+	font-weight: bold;
+	color : red;
+}
+
+#taskList{
+	width : 500px;
+	margin : 10px;
+	padding : 10px;
+	border : 2px solid gray;
+	border-radius: 10px;
+}
+#taskList > li{
+	list-style: none;
+	margin: 5px;
+	border-radius: 5px;
+	padding : 5px;
+	background-color: #e7e7e7;
+}
+#taskList form{
+	margin-left: 10px;
+	display : inline;
+}

@@ -1,0 +1,20 @@
+extends master
+block scripts
+	script(type="text/javascript", src="/javascripts/taskMgt.js")
+block content
+	div Task Count = #{data.length}
+	ol#taskList
+		each task in data
+			if task.isCompleted
+				li(task-id="#{task.id}")
+					span(class="completed")= task.name 
+					form(method="post", action="/tasks/toggle")
+						input(type="hidden", value="#{task.id}", name="taskId")
+						input(type="submit", value="Toggle")
+			else
+				li(task-id="#{task.id}")
+					span= task.name 
+					form(method="post", action="/tasks/toggle")
+						input(type="hidden", value="#{task.id}", name="taskId")
+						input(type="submit", value="Toggle")
+	a(href="/tasks/new") Create New Task

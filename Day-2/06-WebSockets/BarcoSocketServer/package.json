@@ -1,0 +1,14 @@
+{
+  "name": "BarcoSocketServer",
+  "version": "0.1.1",
+  "description": "A sample web socket implementation",
+  "main": "timeService.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "websockets"
+  ],
+  "author": "Magesh K",
+  "license": "BSD-2-Clause"
+}
