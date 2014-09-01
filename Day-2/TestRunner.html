@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test runner</title>
+	<script>
+		function getEngine(){
+		  var fns = [];
+		  return {
+		     add : function(fn){
+		          fns.push(fn);
+		     },
+		     run : function(data){
+		              function runner(data,fns){
+		                    var fn = fns[0],
+		                        remaining = fns.splice(1);
+		                    if (!fn) return;
+		                    return fn(data,function(){
+		                    	runner(data,remaining)
+		                    });
+		              }
+		              return runner(data,fns);
+		         }
+		     }
+		  }
+		  var f1 = function(data,next){
+			   data.result += "f1 - ";
+			   setTimeout(next,10000);
+			}
+			var f2 = function(data,next){
+			   data.result += "f2 - ";
+			   setTimeout(next,10000);
+			}
+			var f3 = function(data,next){
+			   data.result += "f3 - ";
+			   console.log(data);
+			}
+			var d = { result : ""};
+			var engine = getEngine();
+			engine.add(f1);
+			engine.add(f2);
+			engine.add(f3);
+			engine.run(d);
+			
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

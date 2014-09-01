@@ -14,8 +14,10 @@ function isStatic(pathName){
    });
 }
 
-module.exports = function(req,res){
+module.exports = function(req,res,next){
+	
 	var pathname =  req.url.pathname === "/" ? "index.html" : req.url.pathname;
+	
 	if (isStatic(pathname)){
 		var fileName = pathname
 			filePath = path.join(__dirname, fileName);
@@ -23,13 +25,13 @@ module.exports = function(req,res){
 		if (!fs.existsSync(filePath)){
 			res.statusCode = 404;
 			res.end();
-			return false;
+		} else  {
+			var stream = fs.createReadStream(filePath);
+			stream.pipe(res);
+			
 		}
-		var stream = fs.createReadStream(filePath);
-		stream.pipe(res);
-		return false;
 	} else {
-		return true;
+		next();
 	}
 
 };
